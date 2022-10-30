@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="linkedlist.js"></script> -->
+</head>
+
+<body>
+    <button onclick="enterValue()">click here to add a node</button>
+    <button onclick="myList.printList()" id="print">click here to print a list</button>
+    <button onclick="myList.deleteHead()">click here to delete a node</button>
+    <script>
+        class Node {
+            constructor(value) {
+                this.value = value,
+                    this.next = null
+            }
+        }
+        class LinkedList {
+            //Creates a linkedlist with passed value.
+            constructor(value) {
+                //Creates a head node
+                this.head = {
+                    value: value,
+                    next: null
+                };
+                //As there is only one element in the list, head is also a tail
+                this.tail = this.head;
+                //Length would be 1
+                this.length = 1;
+            }
+
+
+            append(value) {
+
+                //Create a new Node by creating a instance of a Node class
+                const newNode = new Node(value);
+
+                // Check if head is present or not, if head is empty creates a head
+                if (this.head == null) {
+                    this.head = node;
+                }
+                else {
+                    this.tail.next = newNode;
+
+                    //Now make newNode a tail node
+                    this.tail = newNode;
+
+                    //Increase the length by 1
+                    this.length++;
+                }
+                return this;
+            }
+            printList() {
+                //Creates an empty array.
+                let printArrayList = [];
+
+                //Pointer which points to the head node
+                let currentNode = this.head;
+
+                //Start iterating from the first node till you reach the last node
+                while (currentNode !== null) {
+                    //Add every node's value to the array
+                    printArrayList.push(currentNode.value);
+
+                    //Point pointer to the next node
+                    currentNode = currentNode.next;
+                }
+                //Return the array
+                // document.write(printArrayList.join(' -> '));
+                 console.log(printArrayList.join("->"))
+                // var b=document.createElement("button");
+                // tag.appendChild('b')
+                // document.getElementById()
+
+            }
+            deleteHead() {
+                this.head = this.head.next;
+                this.length--;
+                return this;
+            }
+        }
+        const myList = new LinkedList()
+
+        function enterValue() {
+            var value = prompt("enter the value ")
+            myList.append(value)
+
+        }
+
+
+
+
+        function toPrint() {
+            myList.printList();
+        }
+// console.log('Appendding Node at constant time O(1): 40 -> 50:');
+
+// myList.append(value);
+// console.log(myList);
+
+    </script>
+</body>
+
+</html>
